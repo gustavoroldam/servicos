@@ -4,7 +4,7 @@ namespace DAL; // Informar onde está o arquivo
 include_once 'C:\xampp\htdocs\servicos\DAL\conexao.php'; // require 'conexao.php' -> o "require" se n conseguir acessar ele para o programa
 // o "_once" serve para caso n exista a inclusão ele cria se n ele segue em frente
 
-include 'C:\xampp\htdocs\servicos\MODEL\Operador.php';
+include_once 'C:\xampp\htdocs\servicos\MODEL\Operador.php';
 
 class dalOperador{
     public function Select(){
@@ -34,8 +34,13 @@ class dalOperador{
 
     }
 
-    public function Insert(){
+    public function Insert( \MODEL\Operador $operador){
+        $con = Conexao::conectar();
+        $sql = "INSERT INTO operador (nome, aniversario, salario) VALUES ('{$operador->getNome()}', '{$operador->getAniversario()}', '{$operador->getSalario()}');";
+        $result = $con->query($sql);
+        $con = Conexao::desconectar();
 
+        return $result;
     }
 
     public function Update(){
