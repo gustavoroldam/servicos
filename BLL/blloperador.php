@@ -40,6 +40,17 @@
             $dal = new \DAL\dalOperador();
             $dal->Update($operador);
         }
+
+        public function Delete ( int $id ){
+            /*echo "Nome: " . $operador->getNome() . "</br>";
+            echo "Aniversario: {$operador->getAniversario()} </br>";
+            echo "Salario: {$operador->getSalario()} </br>";*/
+
+            // regras de negocio devem ser implementadas neste local
+
+            $dal = new \DAL\dalOperador();
+            $dal->Delete($id);
+        }
         
     }
 

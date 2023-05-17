@@ -28,19 +28,18 @@ $lstOperador = $bll->Select();
 </head>
 <body>
     <h1>Listar Operadores</h1>
-    <a class="btn-floating btn-large waves-effect waves-light green" onclick="JavaScript:location.href='insoperador.php'"> <!-- onclick -> Serve para Mudar de Tela -->
-        <i class="material-icons">add</i>
-    </a>
 
-    <br> <br>
-
-    <table class="striped red lighten-2">
+    <table class="striped brown lighten-2">
         <tr>
             <th>ID</th>
             <th>NOME</th>
             <th>ANIVERSÁRIO</th>
             <th>SALÁRIO (R$)</th>
-            <th>  </th>
+            <th>FUNÇÕES - 
+                <a class="btn-floating btn-small waves-effect waves-light green" onclick="JavaScript:location.href='insoperador.php'"> <!-- onclick -> Serve para Mudar de Tela -->
+                    <i class="material-icons">add</i>
+                </a>
+            </th>
         </tr>
         <?php
             foreach ($lstOperador as $operador){
@@ -50,10 +49,19 @@ $lstOperador = $bll->Select();
                     <td><?php echo $operador->getNome(); ?></td>
                     <td><?php echo $operador->getAniversario(); ?></td>
                     <td><?php echo "R$" . number_format($operador->getSalario(),2,",",".");?></td>
-                    <td> <a class="btn-floating btn-small waves-effect waves-light orange" onclick="JavaScript:location.href='edtoperador.php?id=' +
+                    <td> <a class="btn-floating btn-small waves-effect waves-light blue" onclick="JavaScript:location.href='detoperador.php?id=' +
+                         <?php echo $operador->getId(); ?>"> <!-- "?id=..." passsa os valores para o edit -->
+                            <i class="material-icons">list</i>
+                        </a> 
+
+                        <a class="btn-floating btn-small waves-effect waves-light orange" onclick="JavaScript:location.href='edtoperador.php?id=' +
                          <?php echo $operador->getId(); ?>"> <!-- "?id=..." passsa os valores para o edit -->
                             <i class="material-icons">edit</i>
                         </a> 
+
+                        <a class="btn-floating btn-small waves-effect waves-light red" type="button"
+                            onclick="JavaScript:remover( <?php echo $operador->getId(); ?> );"> <i class="material-icons">delete_forever</i>
+                        </a>
                     </td>
                 </tr>
         <?php
@@ -62,3 +70,11 @@ $lstOperador = $bll->Select();
     </table>
 </body>
 </html>
+
+<script>
+    function remover(id){
+        if(confirm('Excluir o Operador ' + id + '?')){
+            location.href = 'remoperador.php?id=' + id;
+        }
+    }
+</script>

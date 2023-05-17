@@ -1,19 +1,20 @@
 <?php
 // Pegar os Valores da Tabela
-    include_once '../../BLL/blloperador.php';
+include_once '../../BLL/blloperador.php';
 
-    $id = $_GET['id'];
+$id = $_GET['id'];
 
-    $bll = new \BLL\bllOperador();
+$bll = new \BLL\bllOperador();
 
-    $operador = $bll->SelectId($id);
+$operador = $bll->SelectId($id);
 
-    //echo $operador->getNome();
+//echo $operador->getNome();
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,14 +25,15 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>Editar Operador</title>
 </head>
+
 <body>
     <div class="container teal lighten-5 black-text col s12"> <!-- Conteiner / Cor da tabela / col s12 -> tamanho a tabela -->
-    
+
         <div class="center orange">
             <h1>Editar Operador</h1>
         </div>
@@ -60,17 +62,18 @@
 
                 <div class="brown lighten-3 center col s12">
                     <br> <!-- O type="submit" ele executa o action="recinsoperador.php" existemte -->
-                    <button class="waves-effect waves-light btn green" type="submit"> Gravar  <i class="material-icons">save</i> </button>
+                    <button class="waves-effect waves-light btn green" type="submit"> Gravar <i class="material-icons">save</i> </button>
 
-                    <button class="waves-effect waves-light btn red" type="reset"> Limpar  <i class="material-icons">clear_all</i> </button>
+                    <button class="waves-effect waves-light btn red" type="reset"> Limpar <i class="material-icons">clear_all</i> </button>
 
-                    <button class="waves-effect waves-light btn blue" type="button"> Voltar  <i class="material-icons">arrow_back</i> </button>
+                    <button class="waves-effect waves-light btn blue" type="button" onclick="JavaScript:location.href='lstoperador.php?'"> Voltar <i class="material-icons">arrow_back</i> </button>
                     <br>
                     <br>
                 </div>
             </form>
         </div>
-        
+
     </div>
 </body>
+
 </html>
