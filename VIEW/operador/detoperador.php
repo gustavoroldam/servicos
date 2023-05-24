@@ -32,6 +32,12 @@ $operador = $bll->SelectId($id);
 </head>
 
 <body>
+
+    <?php
+        //include_once '\servicos\VIEW\menu.php';
+        include_once '../menu.php'; // Para o menu aparecer em todos
+    ?>
+
     <div class="container teal lighten-5 black-text col s12"> <!-- Conteiner / Cor da tabela / col s12 -> tamanho a tabela -->
         <div class="center orange">
             <h1>Detalhes de Operador</h1>
@@ -76,6 +82,10 @@ $operador = $bll->SelectId($id);
             <br>
         </div>
     </div>
+
+    <?php
+        include_once '../footer.php'; // Para o menu aparecer em todos
+    ?>
 
 </body>
 

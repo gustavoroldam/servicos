@@ -27,6 +27,12 @@ $lstOperador = $bll->Select();
     <title>Listar Operadores</title>
 </head>
 <body>
+
+    <?php
+        //include_once '\servicos\VIEW\menu.php';
+        include_once '../menu.php'; // Para o menu aparecer em todos
+    ?>
+
     <h1>Listar Operadores</h1>
 
     <table class="striped brown lighten-2">
@@ -68,6 +74,11 @@ $lstOperador = $bll->Select();
             }
         ?>
     </table>
+
+    <?php
+        include_once '../footer.php'; // Para o menu aparecer em todos
+    ?>
+
 </body>
 </html>
 
