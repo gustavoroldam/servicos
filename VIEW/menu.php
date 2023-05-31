@@ -1,3 +1,12 @@
+<?php
+
+    session_start();
+    if(!isset($_SESSION['login'])){
+        header("location:\servicos\VIEW\index.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +26,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-    <title>Listar Operadores</title>
+    <title>Menu</title>
 </head>
 
 <body>
@@ -32,6 +41,7 @@
                 <!--<li><a href="\servicos\VIEW\equipamento\lstequipamento.php">Equipamento</a></li>-->
                 <li><a href="\servicos\VIEW\area\lstarea.php">Área</a></li>
                 <li><a href="\servicos\VIEW\servico\lstservico.php">Serviços</a></li>
+                <li><a href="\servicos\VIEW\logout.php">LogOut</a></li>
             </ul>
         </div>
     </nav>

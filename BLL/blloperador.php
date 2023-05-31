@@ -51,6 +51,11 @@
             $dal = new \DAL\dalOperador();
             $dal->Delete($id);
         }
+
+        public function SelectNome(string $nome){
+            $daloperador = new dalOperador(); 
+            return $daloperador->SelectNome($nome);
+        }wqiik
         
     }
 

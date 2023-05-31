@@ -47,6 +47,36 @@ class dalOperador{
         return $operador;
     }
 
+    public function SelectNome(string $nome){
+
+        $sql = "select * from operador WHERE nome like  '%" . $nome .  "%' order by nome;";
+
+        $pdo = Conexao::conectar(); 
+        $query = $pdo->prepare($sql);
+        $result = $pdo->query($sql); 
+                  
+        // echo count ($result);
+        $lstOperador = null; 
+        foreach($result as $linha){
+                      
+          $operador = new \MODEL\Operador();
+  
+          $operador->setId($linha['id']);
+          $operador->setNome($linha['nome']);
+
+          $date = date_create($linha['aniversario']);
+          $operador->setAniversario(date_format($date, 'd-m-Y')); 
+     
+          $operador->setSalario($linha['salario']); 
+  
+          $lstOperador[] = $operador; 
+
+        }
+        return  $lstOperador;
+
+      }
+
+
     public function Insert( \MODEL\Operador $operador){
         $con = Conexao::conectar();
         $sql = "INSERT INTO operador (nome, aniversario, salario) VALUES ('{$operador->getNome()}', '{$operador->getAniversario()}', '{$operador->getSalario()}');";
@@ -78,5 +108,3 @@ class dalOperador{
         return $result;
     }
 }
-
-?>
