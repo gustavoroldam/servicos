@@ -1,4 +1,5 @@
 <?php
+
 namespace DAL; // Informar onde está o arquivo
 
 include_once 'C:\xampp\htdocs\servicos\DAL\conexao.php'; // require 'conexao.php' -> o "require" se n conseguir acessar ele para o programa
@@ -6,15 +7,17 @@ include_once 'C:\xampp\htdocs\servicos\DAL\conexao.php'; // require 'conexao.php
 
 include_once 'C:\xampp\htdocs\servicos\MODEL\Operador.php';
 
-class dalOperador{
-    public function Select(){
+class dalOperador
+{
+    public function Select()
+    {
         $sql = "select * from operador;";
         $con = Conexao::conectar();
         $result = $con->query($sql); // Faz uma leitura de dados foita no BD ("select * from operador"-> Ridder de Dados)
         $con = Conexao::desconectar();
         //return $lstOperador;
 
-        foreach($result as $linha){
+        foreach ($result as $linha) {
             $operador = new \MODEL\Operador(); // Instanciando um Obj da Classe Operador
 
             $operador->setId($linha['id']); // Pegando a linha do BD e colocando no Obj
@@ -30,7 +33,8 @@ class dalOperador{
         // Rider é os dados do BD
     }
 
-    public function SelectID(int $id){
+    public function SelectID(int $id)
+    {
         $sql = "select * from operador where id=?;"; // Mandar um valor por parametro
         $pdo = Conexao::conectar();
         $query = $pdo->prepare($sql);
@@ -47,37 +51,37 @@ class dalOperador{
         return $operador;
     }
 
-    public function SelectNome(string $nome){
+    public function SelectNome(string $nome)
+    {
 
         $sql = "select * from operador WHERE nome like  '%" . $nome .  "%' order by nome;";
 
-        $pdo = Conexao::conectar(); 
+        $pdo = Conexao::conectar();
         $query = $pdo->prepare($sql);
-        $result = $pdo->query($sql); 
-                  
+        $result = $pdo->query($sql);
+
         // echo count ($result);
-        $lstOperador = null; 
-        foreach($result as $linha){
-                      
-          $operador = new \MODEL\Operador();
-  
-          $operador->setId($linha['id']);
-          $operador->setNome($linha['nome']);
+        $lstOperador = null;
+        foreach ($result as $linha) {
 
-          $date = date_create($linha['aniversario']);
-          $operador->setAniversario(date_format($date, 'd-m-Y')); 
-     
-          $operador->setSalario($linha['salario']); 
-  
-          $lstOperador[] = $operador; 
+            $operador = new \MODEL\Operador();
 
+            $operador->setId($linha['id']);
+            $operador->setNome($linha['nome']);
+
+            $date = date_create($linha['aniversario']);
+            $operador->setAniversario(date_format($date, 'd-m-Y'));
+
+            $operador->setSalario($linha['salario']);
+
+            $lstOperador[] = $operador;
         }
         return  $lstOperador;
+    }
 
-      }
 
-
-    public function Insert( \MODEL\Operador $operador){
+    public function Insert(\MODEL\Operador $operador)
+    {
         $con = Conexao::conectar();
         $sql = "INSERT INTO operador (nome, aniversario, salario) VALUES ('{$operador->getNome()}', '{$operador->getAniversario()}', '{$operador->getSalario()}');";
         $result = $con->query($sql);
@@ -86,7 +90,8 @@ class dalOperador{
         return $result;
     }
 
-    public function Update( \MODEL\Operador $operador){
+    public function Update(\MODEL\Operador $operador)
+    {
         $sql = "UPDATE operador SET nome=?, aniversario=?, salario=? WHERE id=?";
 
         $pdo = Conexao::conectar();
@@ -97,7 +102,8 @@ class dalOperador{
         return $result;
     }
 
-    public function Delete( int $id){
+    public function Delete(int $id)
+    {
         $sql = "DELETE FROM operador WHERE id=?";
 
         $pdo = Conexao::conectar();
