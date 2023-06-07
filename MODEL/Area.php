@@ -4,7 +4,7 @@
     class Area{
         private ?int $id;
         private ?string $nome;
-        private ?string $tipo;
+        private ?int $tipo;
         private ?float $hectares;
 
         public function __construct(){}
